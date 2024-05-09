@@ -74,8 +74,8 @@ const appTheme = createTheme({
           justifyContent: "center",
           alignItems: "center",
           fontFamily: fonts.secondary,
-          fontWeight: 700,
-          textTransform: "capitalize",
+          // fontWeight: 700,
+          textTransform: "uppercase",
           fontSize: 16,
         },
       },
@@ -84,8 +84,9 @@ const appTheme = createTheme({
           props: { variant: "primary" },
           style: {
             padding: ".5rem 1rem",
-            backgroundColor: "#3F5F85",
-            color: "#fff",
+            // backgroundColor: "#3F5F85",
+            backgroundColor: palette.secondary.main,
+            color: "#000",
             borderRadius: "0",
             gap: "1.5rem",
             transition: "transform .5s ease",
@@ -141,11 +142,11 @@ const appTheme = createTheme({
         {
           props: { variant: "h2" },
           style: {
-            fontFamily: fonts.display,
+            fontFamily: fonts.secondary,
             // color: palette.primary.main,
-            fontWeight: 700,
-            textTransform: "uppercase",
-            textAlign: "center",
+            fontWeight: 500,
+            // textTransform: "uppercase",
+            // textAlign: "center",
           },
         },
         {
@@ -159,7 +160,15 @@ const appTheme = createTheme({
         {
           props: { variant: "h4" },
           style: {
-            fontFamily: fonts.secondary,
+            fontFamily: fonts.primary,
+            textTransform: "capitalize",
+            fontWeight: 600,
+          },
+        },
+        {
+          props: { variant: "h5" },
+          style: {
+            fontFamily: fonts.primary,
             textTransform: "capitalize",
             fontWeight: 600,
           },
@@ -190,7 +199,7 @@ const appTheme = createTheme({
         {
           props: { variant: "subTitle2" },
           style: {
-            fontWeight: 300,
+            fontWeight: 400,
             lineHeight: 2,
             color: "#424242",
             fontSize: "16px",
@@ -202,7 +211,7 @@ const appTheme = createTheme({
           props: { variant: "p" },
           style: {
             textAlign: "left",
-            fontWeight: 300,
+            // fontWeight: 300,
             lineHeight: 2,
             color: "#424242",
           },
