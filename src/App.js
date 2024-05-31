@@ -1,31 +1,27 @@
-import { ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
-import appTheme from "./Theme/ThemeContext";
-import { Paper } from "@mui/material";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import HeroSection from "./Components/HomePage/HeroSection";
-
-const responsiveTheme = responsiveFontSizes(appTheme);
+import HomePage from "./Components/HomePage/HomePage";
+import ServicesPage from "./Components/ServicesPage/ServicesPage";
+import LookbookPage from "./Components/LookbookPage/LookbookPage";
+import { Route, Routes } from "react-router-dom";
+import ScrollToTop from "./HelperComponents/ScrollToTop";
 
 function App() {
   return (
-    <div className='App'>
-      <ThemeProvider theme={responsiveTheme}>
-        <Paper
-          sx={{
-            width: 1,
-            height: 1,
-            background: "transparent",
-            position: "relative",
-            height: 2000,
-          }}
-        >
-          <Navbar />
-          <HeroSection />
-          <Footer />
-        </Paper>
-      </ThemeProvider>
-    </div>
+    <>
+      <ScrollToTop />
+
+      <Navbar />
+
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/our-services' element={<ServicesPage />} />
+        <Route path='/lookbook' element={<LookbookPage />} />
+        {/* <Route path='*' element={<NotFound />} /> ERROR PAGE!!!!! */}
+      </Routes>
+
+      <Footer />
+    </>
   );
 }
 

@@ -1,16 +1,25 @@
 import React from "react";
+import { ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
+import appTheme from "./Theme/ThemeContext";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AppContextProvider } from "./Context/AppContext";
+import { BrowserRouter } from "react-router-dom";
+
+const responsiveTheme = responsiveFontSizes(appTheme);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppContextProvider>
-      <App />
-    </AppContextProvider>
+    <BrowserRouter>
+      <AppContextProvider>
+        <ThemeProvider theme={responsiveTheme}>
+          <App />
+        </ThemeProvider>
+      </AppContextProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

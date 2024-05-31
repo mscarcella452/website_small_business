@@ -6,275 +6,236 @@ import {
   Container,
   useMediaQuery,
   IconButton,
+  Link,
 } from "@mui/material";
-import { md } from "../../Theme/mediaQueries";
+import { md, mobile } from "../../Theme/mediaQueries";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useToggle } from "../../Hooks/CustomHooks";
+import { fonts } from "../../Theme/ThemeContext";
+import CompanyAddress from "../../HelperComponents/CompanyAddress";
+import ArrowButton from "../../HelperComponents/ArrowButton";
+import ArrowLink from "../../HelperComponents/ArrowLink";
+import StyledHamburgerMenuIcon from "../../HelperComponents/StyledHamburgerMenuIcon";
+import { Link as RouterLink } from "react-router-dom";
 
 const logo = "https://cdn-icons-png.flaticon.com/128/10583/10583048.png";
 
 const links = [
-  // { link: "Home", to: "#Home" },
   { link: "About", to: "#About" },
-  { link: "Services", to: "#Services" },
-  { link: "Lookbook", to: "#Lookbook" },
+  { link: "Services", to: "/our-services" },
+  { link: "Lookbook", to: "/lookbook" },
   { link: "Hours", to: "#Hours" },
   // { link: "Contact", to: "#Contact" },
 ];
 
+const useFullScreenMenu = isMenuHidden => {
+  const [menuOpen, setMenuOpen] = useState(isMenuHidden);
+
+  useEffect(() => {
+    if (isMenuHidden && menuOpen) {
+      setMenuOpen(false);
+    }
+
+    // Disable scrolling when the menu is open
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+
+    // Cleanup effect to reset overflow style on unmount
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMenuHidden, menuOpen]);
+
+  return [menuOpen, setMenuOpen];
+};
+
 function Navbar() {
   const navbarHeight = 70;
   const [hideBackground, IntersectionTrigger] = useObserverNavbar(navbarHeight);
-  const [showMenu, setShowMenu] = useState(false);
-  const hideHamburgerMenu = useMediaQuery(md);
+  const [loading, setLoading] = useState(true);
+  const isMenuHidden = useMediaQuery(md);
+  const mobilePortrait = !useMediaQuery(mobile);
+  const [menuOpen, setMenuOpen] = useFullScreenMenu(isMenuHidden);
 
   useEffect(() => {
-    hideHamburgerMenu && showMenu && setShowMenu(false);
-  }, [hideHamburgerMenu]);
+    const loadBackground = () => setTimeout(() => setLoading(false), 1);
+    loadBackground();
+  }, []);
 
-  const handleToggleMenu = () => setShowMenu(prev => !prev);
+  const handleToggleMenu = () => setMenuOpen(prev => !prev);
 
   return (
     <>
       {IntersectionTrigger}
       <Box
+        className='flexRow'
         sx={{
-          // height: hideBackground ? 100 : 70,
-          // transition: "all .5s ease",
           height: navbarHeight,
-
-          width: 1,
-          padding: 1,
-          position: "sticky",
+          position: "fixed",
           top: 0,
           left: 0,
           right: 0,
           zIndex: 10,
 
-          "&::before": {
-            content: "''",
+          fontFamily: fonts.secondary,
+        }}
+      >
+        <Box
+          className='flexRow'
+          sx={{
             position: "absolute",
             top: 0,
             left: 0,
+            height: navbarHeight,
+            backgroundColor: "background.primary",
             width: 1,
-            height: 1,
-            // backgroundColor: "primary.dark",
-            // backgroundColor: "#333366",
-            backgroundColor: "#fff",
-            // backgroundColor: "#292929",
-            transform:
-              hideBackground && !showMenu
-                ? "translateY(-200%)"
-                : "translateY(0)",
-            transition: "transform .5s ease",
-            // boxShadow: !hideBackground && !showMenu && 1,
-            // backgroundColor: {
-            //   xxs: "Red",
-            //   sm: "blue",
-            //   md: "purple",
-            //   lg: "teal",
-            // },
-            zIndex: 2,
-          },
-          // border: 1,
-        }}
-      >
-        <Container
-          maxWidth={false}
-          sx={{
-            // color: hideBackground ? "#fff" : "#000",
-            // transition: "all 1s ease",
-            color: "primary.dark",
-            gap: 6,
-            height: 1,
-            justifyContent: "flex-end",
+            zIndex: "inherit",
+            justifyContent: "space-between",
+
+            "&::before": {
+              content: "''",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: 1,
+              height: 1,
+              // backgroundColor: "background.secondary",
+
+              backgroundColor: "background.secondary",
+              // backgroundColor: "#D6CAB7",
+
+              transform:
+                (hideBackground && !menuOpen) || loading
+                  ? "translateX(200%)"
+                  : "translateX(0)",
+              transition: "transform 1s ease",
+
+              zIndex: 2,
+            },
+            padding: { xxs: ".5rem 1rem", sm: ".5rem 1.5rem" },
           }}
         >
-          <Box
-            className='flexRow'
-            sx={{
-              // height: 1,
-              // padding: 1,
-              gap: 2,
-              zIndex: 2,
-              // paddingRight: 8,
-
-              justifyContent: {
-                xxs: "center",
-                sm: "space-between",
-                md: "flex-start",
-              },
-              position: "relative",
-              // "&:before": {
-              //   content: "''",
-              //   height: 1,
-              //   width: 1,
-
-              //   left: 0,
-
-              //   position: "absolute",
-              //   backgroundColor: "#65857A",
-              //   zIndex: -1,
-              // },
-            }}
+          <Link
+            component={RouterLink}
+            to='/'
+            variant='navbar'
+            sx={{ zIndex: 2 }}
           >
-            {/* <Box
-              sx={{
-                height: 35,
-                aspectRatio: 1,
-                background: `url(${logo}) top center / cover no-repeat`,
-                order: { xxs: 1, md: -1 },
-
-                // display: { xxs: "none", sm: "block" },
-              }}
-            /> */}
             <Typography
               variant='h5'
-              // color='primary.light'
-              color={hideBackground ? "background.primary" : "primary.dark"}
-              fontWeight={700}
-              textTransform='uppercase'
+              onClick={handleToggleMenu}
               sx={{
-                display: { xxs: "none", sm: "block" },
-                transition: "all .5s ease",
+                zIndex: 2,
+                fontFamily: fonts.secondary,
               }}
             >
-              {/* TMC */}
               Thomas Mitchell Clothiers
             </Typography>
+          </Link>
 
-            {!hideHamburgerMenu && (
-              <IconButton
-                onClick={handleToggleMenu}
-                color='inherit'
-                sx={{
-                  // border: 1,
-                  height: 35,
-                  aspectRatio: 1,
-                  order: { xxs: -1, md: 1 },
-                  position: { xxs: "absolute", sm: "relative" },
-                  // top: 0,
-                  right: { xxs: "auto", sm: 0 },
-                  left: { xxs: 0, sm: "auto" },
-                  // bottom: 0,
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
-            )}
-          </Box>
-          <Box
-            className='flexRow'
-            sx={{ justifyContent: "flex-end", flex: 1, gap: 4, zIndex: 2 }}
-          >
-            {hideHamburgerMenu &&
-              links.map(link => (
-                <Typography
-                  variant='p'
-                  color='#000'
-                  textTransform={"uppercase"}
-                  fontWeight={400}
+          {isMenuHidden && (
+            <Box
+              className='flexRow'
+              sx={{
+                justifyContent: "flex-end",
+                flex: 1,
+                gap: 4,
+                zIndex: 2,
+
+                // border: 1,
+              }}
+            >
+              {links.map((link, index) => (
+                <Link
+                  key={index}
+                  component={RouterLink}
+                  variant='navbar'
+                  to={link.to}
                 >
                   {link.link}
-                </Typography>
+                </Link>
               ))}
-            <Button variant='primary'>Contact</Button>
-          </Box>
-        </Container>
+              <Link variant='primary' sx={{ fontSize: 14 }}>
+                Discover Your Fit
+              </Link>
+            </Box>
+          )}
+
+          {!isMenuHidden && (
+            <IconButton
+              onClick={handleToggleMenu}
+              disableRipple
+              disableFocusRipple
+              sx={{
+                zIndex: 2,
+                position: "absolute",
+                right: { xxs: "1rem", sm: "1.5rem" },
+              }}
+            >
+              <StyledHamburgerMenuIcon transition={menuOpen} color={"#333"} />
+            </IconButton>
+          )}
+        </Box>
+
         <Box
+          className='flexColumn'
           sx={{
             position: "absolute",
-            // height: 400,
-            top: 70,
+            top: 0,
+
             left: 0,
             right: 0,
-            backgroundColor: "primary.dark",
-            transform: !showMenu ? "translateY(-200%)" : "translateY(0)",
+            height: "100vh",
+
+            backgroundColor: "background.secondary",
+            transform: !menuOpen && "translateX(-200%)",
             transition: "transform 1s ease",
-            padding: "1.5rem .5rem",
-            // padding: 1,
-            // paddingBottom: 0,
+            padding: { xxs: "3rem 1rem", sm: "3rem 1.5rem" },
           }}
         >
           <Container
             className='flexColumn'
-            maxWidth={false}
+            maxWidth='sm'
             sx={{
-              // gap: 6,
-              // border: 1,
+              display: "flex",
+              gap: 4,
+
+              justifyContent: "space-around",
               height: 1,
-              color: "#fff",
-              opacity: showMenu ? 1 : 0,
-              transition: "opacity .5s ease",
-              // alignItems: { xxs: "flex-start", sm: "flex-end" },
             }}
           >
-            <Typography
-              variant='subHeading'
-              color='inherit'
-              fontWeight={700}
-              textTransform='uppercase'
+            <Box
+              className='flexColumn'
+              gap={4}
               sx={{
-                display: { xxs: "block", sm: "none" },
                 width: 1,
-                textAlign: "center",
-                marginBottom: 3,
-                // color: "#000",
+                alignItems: "flex-start",
               }}
             >
-              {/* TMC */}
-              Thomas Mitchell Clothiers
-            </Typography>
-            {links.map((link, index) => (
-              <Box
-                className='flexRow'
-                variant='label'
-                color='inherit'
-                zIndex={2}
-                sx={{
-                  height: 60,
-                  width: 1,
-
-                  // justifyContent: "flex-start",
-                  position: "relative",
-                  "&:before": {
-                    content: "''",
-                    position: "absolute",
-                    top: 0,
-                    bottom: 0,
-                    // width: "100vw",
-                    left: 0,
-                    right: 0,
-                    // borderTop: index === 0 && 1,
-                    // borderBottom: 1,
-                    // borderColor: "#fff",
-
-                    // backgroundColor:
-                    //   index % 2 === 1 ? "primary.dark" : "primary.light",
-                    // zIndex: 2,
-                  },
-                }}
-                // textTransform={"none"}
-              >
-                <Typography
-                  className='flexRow'
-                  variant='label'
-                  color='inherit'
-                  zIndex={1}
-                  sx={{
-                    width: 1,
-                    height: 1,
-                    justifyContent: { xxs: "center", sm: "flex-start" },
-                    // opacity: showMenu ? 1 : 0,
-                    // transition: "opacity .5s ease",
-                  }}
-
-                  // textTransform={"none"}
+              {links.map((link, index) => (
+                <ArrowLink
+                  key={index}
+                  variant='secondary'
+                  onClick={handleToggleMenu}
+                  href={link.to}
+                  sx={{ width: 1 }}
                 >
                   {link.link}
-                </Typography>
-              </Box>
-            ))}
+                </ArrowLink>
+              ))}
+            </Box>
+            <Box className='flexColumn' gap='inherit'>
+              <CompanyAddress
+                variant={mobilePortrait ? "h7" : "h5"}
+                fontWeight='300'
+              />
+              <Link
+                variant='primary'
+                onClick={handleToggleMenu}
+                sx={{ fontSize: 14, backgroundColor: "primary.main" }}
+              >
+                Discover Your Fit
+              </Link>
+            </Box>
           </Container>
         </Box>
       </Box>

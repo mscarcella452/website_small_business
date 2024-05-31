@@ -1,7 +1,10 @@
 const palette = {
   background: {
     primary: "#F7F6F2",
-    secondary: "#fff",
+    // primary: "#F7F6F2",
+    secondary: "#EEEEEE",
+    // secondary: "#EEEEEE",
+    // secondary: "#BAA686",
 
     // fontColor: {
     //   // primary:
@@ -12,12 +15,15 @@ const palette = {
   },
   primary: {
     // light: will be calculated from palette.primary.main,
-    main: "#C9D4C3",
+    // main: "#C9D4C3",
+    // main: "#F7F6F2",
+    main: "#A9BCB8",
     // fontColor:
   },
   secondary: {
     // light: will be calculated from palette.primary.main,
-    main: "#EDBBB1",
+    main: "#F7F6F2",
+    // main: "#EDBBB1",
     // fontColor:
   },
   // info: {
