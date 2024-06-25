@@ -23,7 +23,7 @@ function Testimonials() {
     Carousel,
   ] = useCarousel(reviews);
 
-  const showImage = useMediaQuery(md);
+  const largeScreen = useMediaQuery(md);
 
   const { variant, sx } = useSectionSx();
 
@@ -43,79 +43,49 @@ function Testimonials() {
           <Typography variant={variant.subtitle} sx={sx.subtitle}>
             {subtitle}
           </Typography>
-          {!showImage && (
-            <CarouselButtons
-              handlePrevSlide={handlePrevSlide}
-              handleNextSlide={handleNextSlide}
-            />
-          )}
+
+          <CarouselButtons
+            handlePrevSlide={handlePrevSlide}
+            handleNextSlide={handleNextSlide}
+            gap={1.5}
+          />
         </Box>
-        <Typography
-          variant={variant.title}
-          sx={{
-            ...sx.title,
-            ...(!showImage && { margin: "1rem 0" }),
-          }}
-        >
+        <Typography variant={variant.title} sx={sx.title}>
           {title}
         </Typography>
-        {showImage && (
+        {largeScreen && (
           <Typography variant={variant.heading_p} sx={sx.heading_p}>
             {description}
           </Typography>
         )}
-        <Box sx={sx.contentGrid}>
-          <Box
-            sx={sx.contentImage}
-            component={"img"}
-            src={backgroundImage}
-            alt={"Testimonials section background image."}
-          />
-
+        <Container maxWidth={false}>
           <Box
             className='flexColumn'
-            sx={{ width: 1, height: 1, gap: 3, order: -1 }}
+            sx={{ width: 1, mt: 3, maxWidth: largeScreen ? "sm" : 1 }}
           >
-            {showImage && (
-              <CarouselButtons
-                handlePrevSlide={handlePrevSlide}
-                handleNextSlide={handleNextSlide}
-                alignSelf='flex-start'
-                justifyContent='flex-end'
-                gap={1.5}
-              />
-            )}
-
-            <Box
-              sx={{
-                ...sx.contentContainer,
-                ...(!showImage && { maxWidth: "sm" }),
-              }}
-            >
-              <Carousel currentIndex={currentIndex} content={reviews}>
-                {params => (
-                  <Box className='flexColumn' gap={2} alignItems='flex-start'>
-                    <Typography variant='h4' color='primary.main'>
-                      {quoteIcon}
-                    </Typography>
-                    <Typography
-                      variant={variant.content_title}
-                      sx={sx.content_title}
-                    >
-                      {params.name}
-                    </Typography>
-                    <Typography
-                      variant={variant.content_p}
-                      sx={{ ...sx.content_p, fontStyle: "italic" }}
-                    >
-                      {params.review}
-                    </Typography>
-                  </Box>
-                )}
-              </Carousel>
-            </Box>
+            <Carousel currentIndex={currentIndex} content={reviews}>
+              {params => (
+                <Box className='flexColumn' gap={2} alignItems='flex-start'>
+                  <Typography variant='h4' color='primary.main'>
+                    {quoteIcon}
+                  </Typography>
+                  <Typography
+                    variant={variant.content_title}
+                    sx={sx.content_title}
+                  >
+                    {params.name}
+                  </Typography>
+                  <Typography
+                    variant={variant.content_p}
+                    sx={{ ...sx.content_p, fontStyle: "italic" }}
+                  >
+                    {params.review}
+                  </Typography>
+                </Box>
+              )}
+            </Carousel>
           </Box>
-        </Box>
+        </Container>
       </Container>
     </Paper>
   );

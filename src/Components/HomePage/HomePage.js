@@ -1,6 +1,6 @@
 import React from "react";
-import { Box } from "@mui/material";
-import { useGlobalStyles } from "../../Styles/useGlobalStyles";
+import { Paper, Box } from "@mui/material";
+import { useGlobalSx } from "../../Styles/useGlobalSx";
 import HeroSection from "./HeroSection/HeroSection";
 import About from "./Sections/About/About";
 import Features from "./Sections/Features/Features";
@@ -9,33 +9,41 @@ import Hours from "./Sections/Hours/Hours";
 import GalleryShowcase from "./Showcases/Gallery/GalleryShowcase";
 import Testimonials from "./Sections/Testimonials/Testimonials";
 import ContactUs from "./Sections/ContactUs/ContactUs";
+import Footer from "../Footer/Footer";
+import HeroFullGrid from "./HeroSection/HeroSection fullGrid";
+import HeroHalfGrid from "./HeroSection/HeroSection halfGrid";
 
 function HomePage() {
-  const sx = useGlobalStyles();
+  const sx = useGlobalSx();
   return (
     <Box backgroundColor='background.primary' sx={sx.page_container}>
+      {/* <HeroFullGrid /> */}
+      {/* <HeroHalfGrid /> */}
       <HeroSection />
       <Box sx={sx.content_Wrapper}>
+        {/* <Paper variant='section'>
+          <ImageStack />
+        </Paper> */}
         <About />
         {/* image break */}
-        <Box sx={sx.divider_image_Wrapper}>
+        <Paper variant='section'>
           <ImageStack />
-        </Box>
+        </Paper>
+
         <Features />
-      </Box>
-      {/* showcase break */}
-      <ServicesShowcase />
-      <Box sx={sx.content_Wrapper}>
+
+        {/* <ServicesShowcase /> */}
+        <HeroHalfGrid />
+
         <Hours />
-      </Box>
-      {/* showcase break */}
-      <GalleryShowcase />
-      <Box sx={sx.content_Wrapper} backgroundColor='background.primary'>
-        <Testimonials />
-        {/* image break */}
-        <Box sx={sx.divider_image_Wrapper}>
+
+        <Paper variant='section'>
           <ImageStack />
-        </Box>
+        </Paper>
+        <Testimonials />
+        {/* <GalleryShowcase /> */}
+        <HeroHalfGrid />
+
         <ContactUs />
       </Box>
     </Box>

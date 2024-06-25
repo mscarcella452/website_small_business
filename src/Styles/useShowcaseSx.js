@@ -1,9 +1,9 @@
-import { useGlobalStyles } from "./useGlobalStyles";
+import { useGlobalSx } from "./useGlobalSx";
 import { useGlobalTypography } from "./useGlobalTypography";
 
 export const useShowcaseSx = () => {
   const typographySx = useGlobalTypography();
-  const globalSx = useGlobalStyles();
+  const globalSx = useGlobalSx();
 
   return {
     variant: {
@@ -23,7 +23,11 @@ export const useShowcaseSx = () => {
       showcase_container: {
         ...globalSx.section_container,
         backgroundColor: "background.secondary",
-        padding: { xxs: "5.5rem 2rem", mobile: "8rem 3rem", md: "10rem 3rem" },
+        padding: { xxs: "3rem 1rem", sm: "3rem 2rem", md: "3rem" },
+        minHeight: { xxs: "auto", md: 600 },
+        justifyContent: "center",
+
+        // padding: { xxs: "5.5rem 2rem", mobile: "8rem 3rem", md: "10rem 3rem" },
       },
 
       subtitle: {

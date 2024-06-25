@@ -1,106 +1,72 @@
-import { useEffect, useRef, useState } from "react";
-import { Box, Typography, Button, useMediaQuery, Link } from "@mui/material";
-import { mobile, lg } from "../../../Theme/mediaQueries";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import debounce from "lodash/debounce";
+import { Paper, Box, Typography, Container } from "@mui/material";
 import { heroSectionData } from "./data.js";
-import CompanyAddress from "../../../HelperComponents/CompanyAddress.js";
-
-const raleway = '"Raleway", sans-serif';
+import ArrowLink from "../../../HelperComponents/ArrowLink.js";
+import useResponsiveThemeValue from "../../../Hooks/useResponsiveThemeValue.js";
 
 function HeroSection() {
-  const largerScreen = useMediaQuery(lg);
-  const mobilePortrait = !useMediaQuery(mobile);
-  const [containerHeight, setContainerHeight] = useState(
-    Math.min(window.innerHeight - 70, 645) + "px"
-    // Math.min(window.innerHeight - 70, 645) + "px"
-  );
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
-  const { backgroundImage, heading, companyAddress, btnTitle } =
-    heroSectionData;
+  const { heading, btnTitle, backgroundImage } = heroSectionData;
+  const navbarHeight = useResponsiveThemeValue("navbar.height");
 
-  useEffect(() => {
-    const heightResize = () => {
-      const windowH = window.innerHeight;
-      setWindowHeight(windowH);
-    };
-
-    const handleDebounceResize = debounce(heightResize, 300);
-    heightResize();
-
-    window.addEventListener("resize", handleDebounceResize);
-
-    return () => window.removeEventListener("resize", handleDebounceResize);
-  }, []);
+  const containerMinHeight = {
+    xxs: `min(calc(100vh - ${navbarHeight}), 400px)`,
+    mobile: `min(calc(100vh - ${navbarHeight}), 628px)`,
+    md: `min(calc(100vh - ${navbarHeight}), 618px)`,
+  };
 
   return (
     <Box
       id='Home'
       sx={{
-        marginTop: "70px",
-        // scrollSnapAlign: "start",
-        scrollMarginTop: "70px",
-        padding: { xxs: 2, mobile: 4, md: 5 },
-        minHeight: {
-          xxs: windowHeight - 70,
-          md: Math.min(windowHeight - 70, 750) + "px",
-        },
-        gap: { xxs: 4, md: 5, lg: 6 },
-        display: "grid",
-        gridTemplateColumns: { xxs: "1fr", md: "1fr 1fr" },
-        gridTemplateRows: { xxs: "auto auto", md: "1fr" },
+        display: "flex",
+        minHeight: containerMinHeight,
+        mt: navbarHeight,
+        p: { xxs: 0, md: "0 2rem 2rem 2rem" },
       }}
     >
-      <Box
-        component='img'
-        src={backgroundImage}
-        alt={"Hero Section background image"}
-        sx={{
-          objectFit: "cover",
-          objectPosition: "top center",
-          width: 1,
-          aspectRatio: 1,
-          minHeight: { xxs: "auto", md: 570 },
-          order: { xxs: 1, md: -1 },
-          alignSelf: "center",
-          boxShadow: 5,
-        }}
-      />
-
-      <Box
+      <Paper
+        variant='section'
         className='flexColumn'
         sx={{
-          height: 1,
-          width: 1,
-          gap: "inherit",
-          alignItems: "flex-start",
-          maxHeight: { xxs: "auto", md: windowHeight - 105 },
-          minHeight: { xxs: "auto", md: 570 },
+          flexGrow: 1,
+          background: `url(${backgroundImage}) center ${navbarHeight} / cover no-repeat fixed`,
+          backgroundColor: "fontColor.p",
+          backgroundBlendMode: "overlay",
+          justifyContent: "flex-end",
+          borderRadius: { xxs: 0, md: 1 },
         }}
       >
-        <Typography
-          variant={largerScreen ? "h1" : mobilePortrait ? "h2" : "h1"}
+        <Container
+          maxWidth={false}
+          disableGutters
+          variant
           sx={{
-            fontFamily: raleway,
-            fontWeight: 300,
-            color: "#262626",
-            maxWidth: { xxs: 1, md: "mobile" },
+            display: "grid",
+            gridTemplateColumns: { xxs: "1fr", md: "1fr 1fr" },
+            alignItems: "flex-end",
+            gap: 6,
           }}
         >
-          {heading}
-        </Typography>
-
-        <Link
-          variant='primary'
-          sx={{ fontSize: 14, display: { xxs: "block", md: "none" } }}
-        >
-          {btnTitle}
-        </Link>
-        <CompanyAddress
-          variant={mobilePortrait ? "h7" : "h5"}
-          fontWeight='300'
-        />
-      </Box>
+          <Typography
+            variant='h3'
+            typography='heading_lg'
+            color='fontColor.light'
+            sx={{ maxWidth: { xxs: "xs", lg: "mobile" } }}
+          >
+            {heading}
+          </Typography>
+          <ArrowLink
+            variant='h5'
+            typography='secondaryFont'
+            sx={{
+              color: "fontColor.light",
+              fontWeight: 700,
+              justifySelf: { xxs: "flex-start", md: "flex-end" },
+            }}
+          >
+            {btnTitle}
+          </ArrowLink>
+        </Container>
+      </Paper>
     </Box>
   );
 }

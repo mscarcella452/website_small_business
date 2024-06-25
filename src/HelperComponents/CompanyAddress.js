@@ -9,10 +9,15 @@ function CompanyAddress({
   ...rest
 }) {
   return (
-    <Typography {...rest}>
-      {address}
-      {""}
-      <LocationOnIcon sx={{ color: iconColor }} />
+    <Typography
+      // className='flexRow'
+      // gap={1}
+      // flexWrap={"wrap"}
+      // aligjustifyItems='flex-start'
+      {...rest}
+    >
+      {address}{" "}
+      <LocationOnIcon sx={{ color: iconColor, fontSize: "inherit" }} />
     </Typography>
   );
 }

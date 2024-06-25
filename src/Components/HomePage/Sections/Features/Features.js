@@ -27,13 +27,6 @@ function Features() {
       <Paper variant='section'>
         <Container maxWidth={false} sx={sx.section_container}>
           <Box sx={sx.contentGrid}>
-            <Box
-              sx={sx.contentImage}
-              component={"img"}
-              src={content.backgroundImage}
-              alt='Features section background image.'
-            />
-
             <Box sx={sx.contentContainer}>
               {content.bulletPoints.map(({ title, description }, index) => (
                 <Box
@@ -53,6 +46,12 @@ function Features() {
                 </Box>
               ))}
             </Box>
+            <Box
+              sx={sx.contentImage}
+              component={"img"}
+              src={content.backgroundImage}
+              alt='Features section background image.'
+            />
           </Box>
         </Container>
       </Paper>

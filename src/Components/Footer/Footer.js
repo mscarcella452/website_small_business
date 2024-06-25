@@ -25,7 +25,11 @@ const links = [
 
 function Footer() {
   return (
-    <Paper variant='section' sx={{ backgroundColor: "#333", color: "#fff" }}>
+    <Paper
+      variant='footer'
+      id='footer'
+      sx={{ backgroundColor: "#333", color: "#fff" }}
+    >
       <Container
         maxWidth={false}
         className='flexColumn'
@@ -39,7 +43,7 @@ function Footer() {
           sx={{
             width: 1,
             display: "grid",
-            gridTemplateColumns: { xxs: "1fr", sm: "1fr 1fr" },
+            gridTemplateColumns: { xxs: "1fr", md: "1fr auto" },
             alignItems: "flex-start",
             gap: "inherit",
           }}
@@ -122,12 +126,13 @@ function Links() {
       sx={{
         height: 1,
         flex: 1,
-        flexDirection: { xxs: "column", mobile: "row", sm: "column" },
+        flexDirection: { xxs: "column", sm: "row", md: "column" },
         flexWrap: "wrap",
 
         // border: 1,
         alignItems: { xxs: "center", sm: "flex-end" },
-        justifyContent: "flex-start",
+        justifyContent: { xxs: "center", md: "flex-start" },
+        // justifyContent: "center",
         // color: "inherit",
       }}
     >

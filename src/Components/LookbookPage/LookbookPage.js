@@ -1,22 +1,30 @@
 import React from "react";
-import { Box } from "@mui/material";
-
+import { Box, Typography, Paper, Container } from "@mui/material";
+import { useGlobalSx } from "../../Styles/useGlobalSx";
+import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
+import { lookbookImages } from "./data";
+import HeroSection from "./HeroSection/HeroSection";
+import { useSectionSx } from "../../Styles/useSectionSx";
+import { useHeroSectionSx } from "../../Styles/useHeroSectionSx";
+import ContactUs from "../HomePage/Sections/ContactUs/ContactUs";
+import BespokeServices from "../ServicesPage/BespokeServices/BespokeServices";
+import ImageGrid from "./ImageGrid";
+import Hours from "../HomePage/Sections/Hours/Hours";
 function LookbookPage() {
+  const sx = useGlobalSx();
+
   return (
-    <Box
-      className='flexColumn'
-      sx={{ height: "100vh", width: 1, backgroundColor: "red", color: "#fff" }}
-    >
-      <Box
-        className='flexColumn'
-        sx={{
-          height: "300px",
-          width: "800px",
-          backgroundColor: "teal",
-          color: "#fff",
-        }}
-      >
-        LookbookPage
+    <Box backgroundColor='background.primary' sx={sx.page_container}>
+      <HeroSection />
+      {/* <Box sx={sx.content_Wrapper}>
+        <BespokeServices />
+      </Box>
+      <Box sx={sx.content_Wrapper}>
+        <ContactUs />
+      </Box> */}
+      {/* <ImageGrid /> */}
+      <Box sx={sx.content_Wrapper}>
+        <ContactUs />
       </Box>
     </Box>
   );

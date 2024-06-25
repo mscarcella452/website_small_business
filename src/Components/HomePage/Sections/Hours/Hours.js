@@ -22,9 +22,10 @@ function Hours() {
           <Typography variant={variant.heading_p} sx={sx.heading_p}>
             {description}
           </Typography>
+
           <Box
             className='flexColumn'
-            sx={{ width: 1, gap: "inherit", marginBottom: "3rem" }}
+            sx={{ width: 1, gap: "inherit", my: "3rem" }}
           >
             {companyData.hours.map(({ day, hours }, index) => (
               <Box

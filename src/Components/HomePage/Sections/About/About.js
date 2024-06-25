@@ -20,17 +20,17 @@ function About() {
     <>
       <Paper variant='section'>
         <Container maxWidth={false} sx={sx.section_container}>
-          <Typography
+          {/* <Typography
             variant={largerScreen ? "h2" : "h3"}
             sx={{
               ...sx.title,
               textTransform: "uppercase",
               maxWidth: 1,
-              fontWeight: 700,
+              // fontWeight: 500,
             }}
           >
             {companyName}
-          </Typography>
+          </Typography> */}
           <Typography
             variant={variant.heading_p}
             sx={{ ...sx.heading_p, paddingBottom: 0 }}

@@ -27,6 +27,7 @@ export const useGlobalTypography = () => ({
 
   p: {
     textAlign: "left",
+    fontWeight: 350,
     lineHeight: 2,
     color: "#424242",
     fontFamily: fonts.primary,

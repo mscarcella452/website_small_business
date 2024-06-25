@@ -1,8 +1,9 @@
 const companyData = {
   name: "Thomas Mitchell Clothiers",
-  slogan: "expert tailoring for personalized elegance",
+  slogan: "bespoke tailoring for timeless elegance.",
+  // slogan: "expert tailoring for personalized elegance",
   address: "24 Gerard St, Huntington, NY 11743",
-  email: "hello@yourdomain.com",
+  email: "ThomasMitchellClothiers@yourdomain.com",
   phone: "+12 9 8765 4321",
   hours: [
     { day: "sunday - monday", abrievDay: "sun - mon", hours: "*appt. only" },

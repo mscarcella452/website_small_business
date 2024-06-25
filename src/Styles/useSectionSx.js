@@ -1,9 +1,9 @@
-import { useGlobalStyles } from "./useGlobalStyles";
+import { useGlobalSx } from "./useGlobalSx";
 import { useGlobalTypography } from "./useGlobalTypography";
 
 export const useSectionSx = () => {
   const typographySx = useGlobalTypography();
-  const globalSx = useGlobalStyles();
+  const globalSx = useGlobalSx();
 
   return {
     variant: {
@@ -51,7 +51,8 @@ export const useSectionSx = () => {
         aspectRatio: 1.5,
         objectFit: "cover",
         objectPosition: "top center",
-        boxShadow: 5,
+        order: 1,
+        // boxShadow: 5,
         // borderRadius: "25px",
       },
 
@@ -69,6 +70,7 @@ export const useSectionSx = () => {
       },
       content_title: {
         ...typographySx.h6,
+        textTransform: "lowercase",
       },
       content_p: {
         ...typographySx.p,

@@ -1,24 +1,32 @@
 // import React from "react";
 import { Box } from "@mui/material";
 
-function StyledHamburgerMenuIcon({ transition, color = "#000", sx }) {
+function StyledHamburgerMenuIcon({
+  transitionState,
+  color = "#000",
+  sx,
+  ...rest
+}) {
   return (
     <Box
       className='flexColumn'
+      {...rest}
       sx={{
         width: 1,
         height: 1,
         alignItems: "flex-end",
-        justifyContent: transition ? "center" : "space-between",
+        justifyContent: transitionState ? "center" : "space-between",
         position: "relative",
-        transition: "all .75s ease",
-        height: transition ? 0.5 : 1,
+        transitionDuration: ".75s",
+        transitionTimingFunction: transitionState ? "eas-in" : "ease-out",
+
+        height: transitionState ? 0.5 : 1,
         // border: 1,
         "& > *": {
           transition: "inherit",
-          height: "1.5px",
+          height: "2px",
           backgroundColor: color,
-          position: transition ? "absolute" : "relative",
+          position: transitionState ? "absolute" : "relative",
           right: 0,
           borderRadius: "1.5px",
         },
@@ -30,21 +38,24 @@ function StyledHamburgerMenuIcon({ transition, color = "#000", sx }) {
     >
       <Box
         sx={{
-          width: transition ? 1 : 0.5,
-          transform: transition && "rotate(45deg)",
+          width: transitionState ? 1 : 0.5,
+          transform: transitionState && "rotate(45deg)",
+          transitionProperty: "width, transform, background-color",
         }}
       />
       <Box
         sx={{
-          width: transition ? 1 : 0.75,
-          opacity: transition ? 0 : 1,
-          transform: transition && "rotate(45deg)",
+          width: transitionState ? 1 : 0.75,
+          opacity: transitionState ? 0 : 1,
+          transform: transitionState && "rotate(45deg)",
+          transitionProperty: "width, opacity, transform, background-color",
         }}
       />
       <Box
         sx={{
           width: 1,
-          transform: transition && "rotate(-45deg)",
+          transform: transitionState && "rotate(-45deg)",
+          transitionProperty: "transform, background-color",
         }}
       />
     </Box>
