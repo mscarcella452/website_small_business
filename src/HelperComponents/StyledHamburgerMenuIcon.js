@@ -18,7 +18,7 @@ function StyledHamburgerMenuIcon({
         justifyContent: transitionState ? "center" : "space-between",
         position: "relative",
         transitionDuration: ".75s",
-        transitionTimingFunction: transitionState ? "eas-in" : "ease-out",
+        transitionTimingFunction: transitionState ? "ease-in" : "ease-out",
 
         height: transitionState ? 0.5 : 1,
         // border: 1,

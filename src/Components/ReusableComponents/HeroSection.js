@@ -1,10 +1,9 @@
 import { Paper, Box, Typography, Container } from "@mui/material";
-import { heroSectionData } from "./data.js";
-import ArrowLink from "../../../HelperComponents/ArrowLink.js";
-import useResponsiveThemeValue from "../../../Hooks/useResponsiveThemeValue.js";
+import { ArrowLink } from "../../HelperComponents";
+import { useResponsiveThemeValue } from "../../Hooks";
 
-function HeroSection() {
-  const { heading, btnTitle, backgroundImage } = heroSectionData;
+function HeroSection({ data }) {
+  const { heading, btnTitle, backgroundImage } = data;
   const navbarHeight = useResponsiveThemeValue("navbar.height");
 
   const containerMinHeight = {

@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider, responsiveFontSizes } from "@mui/material/styles";
 
-import appTheme from "./Theme/ThemeContext";
+import { appTheme } from "./Theme";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./global.css";

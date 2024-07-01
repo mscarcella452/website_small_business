@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { Box } from "@mui/material";
 
 const useObserverNavbar = (navbarHeight = 70) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
@@ -52,3 +53,5 @@ const useObserverNavbar = (navbarHeight = 70) => {
   // Return both isIntersecting and the JSX for the trigger box
   return [isIntersecting, IntersectionTrigger];
 };
+
+export default useObserverNavbar;

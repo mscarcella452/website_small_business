@@ -1,0 +1,17 @@
+.icon_container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.lines {
+  left: 5px;
+  right: 5px;
+  border-bottom: 1.5;
+  position: absolute;
+
+  border-bottom: 1.5px solid;
+  border-color: inherit;
+}

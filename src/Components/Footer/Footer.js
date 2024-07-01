@@ -8,7 +8,8 @@ import {
   Link,
 } from "@mui/material";
 import { fonts } from "../../Theme/ThemeContext";
-import companyData from "../../data/CompanyData";
+import { companyData } from "../../data";
+
 import CompanyAddress from "../../HelperComponents/CompanyAddress";
 import ArrowLink from "../../HelperComponents/ArrowLink";
 import { Link as RouterLink } from "react-router-dom";

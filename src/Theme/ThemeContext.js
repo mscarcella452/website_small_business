@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 
-import { palette } from "./palettes.js";
+import palette from "./palettes";
 
 import breakpoints, {
   xxs,
@@ -19,6 +19,7 @@ export const fonts = {
   secondary: '"Ysabeau SC", sans-serif',
   playfair: '"Playfair Display", serif',
   display: '"Libre Caslon Display", serif',
+  workSans: '"Work Sans", sans-serif',
   // contactInfo: '"Poppins", sans-serif"',
   // display: '"Raleway", sans-serif',
 };
@@ -28,14 +29,22 @@ const appTheme = createTheme({
 
   navbar: {
     height: {
-      xxs: "50px",
-      mobile: "60px",
-      md: "80px",
+      xxs: "70px",
+      sm: "80px",
+      md: "90px",
+
+      // xxs: "50px",
+      // mobile: "60px",,
+      // md: "80px",
     },
     zIndex: 10,
     screenSizeThreshold: md,
   },
 
+  screenSize: {
+    lg: ({ breakpoints, customHeightBreakpoints }) =>
+      `(min-width: ${breakpoints.values.lg}px) and (min-height: ${customHeightBreakpoints.md}px), (min-width: ${breakpoints.values.sm}px) and (min-height: ${customHeightBreakpoints.lg}px)`,
+  },
   transitions: {
     navMenu: {
       box: {
@@ -43,6 +52,12 @@ const appTheme = createTheme({
         width: { true: "width .75s ease-out", false: "width 1.25s ease-in" },
       },
     },
+  },
+
+  icon: {
+    height: "30px",
+    [mobile]: { height: "40px" },
+    aspectRatio: "1/1",
   },
 
   padding: {
@@ -59,19 +74,19 @@ const appTheme = createTheme({
     },
 
     menu: {
-      xxs: "60px 1rem 1rem 1rem",
-      mobile: "70px 1.5rem 1.5rem 1.5rem",
-      sm: "90px 2rem 2rem 2rem",
+      xxs: "1.25rem 1rem",
+      sm: "1.25rem",
       md: "2rem",
     },
-    // menu: {
-    //   xxs: "1.5rem 1rem",
-    //   mobile: "1.5rem",
-    //   md: "2rem",
-    // },
   },
 
   breakpoints: breakpoints,
+
+  customHeightBreakpoints: {
+    sm: 450,
+    md: 600,
+    lg: 800,
+  },
 
   typography: {
     // fontFamily: "Roboto, Arial, sans-serif",
@@ -82,6 +97,32 @@ const appTheme = createTheme({
     actionFont: { fontFamily: '"Libre Baskerville", serif' },
     playfair: { fontFamily: fonts.playfair },
     contactInfo: { fontFamily: fonts.contactInfo },
+    workSans: { fontFamily: fonts.workSans },
+    navMenu: {
+      info: {
+        fontFamily: fonts.workSans,
+        fontWeight: 500,
+        // textTransform: "uppercase",
+      },
+      label: {
+        fontFamily: fonts.display,
+        fontWeight: 700,
+        textTransform: "lowercase",
+      },
+      arrowLink: {
+        fontFamily: fonts.secondary,
+        fontWeight: 500,
+        // textTransform: "uppercase",
+      },
+      navLink: {
+        fontFamily: fonts.display,
+        textTransform: "lowercase",
+        fontWeight: 700,
+        // "&:hover": {
+        //   transform: "scale(1.15)",
+        // },
+      },
+    },
 
     heading_lg: {
       borderLeft: "double 5px",
@@ -163,9 +204,11 @@ const appTheme = createTheme({
 
             [mobile]: {
               padding: theme.padding.navbar.mobile,
-              height: theme.navbar.height.mobile,
             },
-            [sm]: { padding: theme.padding.navbar.sm },
+            [sm]: {
+              padding: theme.padding.navbar.sm,
+              height: theme.navbar.height.sm,
+            },
             [md]: { height: theme.navbar.height.md },
           }),
         },
@@ -184,17 +227,10 @@ const appTheme = createTheme({
     MuiLink: {
       styleOverrides: {
         // Name of the slot
-        root: ({ theme, isActive }) => ({
-          color: theme.palette.fontColor.p,
+        root: {
           cursor: "pointer",
           textDecoration: "none",
-          fontWeight: 500,
-          "&:hover": {
-            textDecoration: "underline",
-            color: theme.palette.primary.dark,
-            transition: "color 1s ease",
-          },
-        }),
+        },
       },
       variants: [],
     },
@@ -225,9 +261,8 @@ const appTheme = createTheme({
           justifyContent: "center",
           alignItems: "center",
           height: "30px",
-
-          aspectRatio: 1,
           [mobile]: { height: "40px" },
+          aspectRatio: 1,
         },
       },
     },
@@ -236,14 +271,27 @@ const appTheme = createTheme({
         {
           props: { variant: "navMenu" },
           style: {
-            fontSize: 12,
+            fontSize: 10,
+
             [xs]: { fontSize: 14 },
-            // [mobile]: { fontSize: 15 },
-            // [sm]: { fontSize: 16 },
-            [md]: { fontSize: 18 },
+            [mobile]: { fontSize: 16 },
+            [sm]: { fontSize: 18 },
+            [md]: { fontSize: 20 },
           },
         },
       ],
+      // variants: [
+      //   {
+      //     props: { variant: "navLinks" },
+      //     style: {
+      //       fontSize: 12,
+
+      //       // [mobile]: { fontSize: 15 },
+      //       // [sm]: { fontSize: 16 },
+      //       [md]: { fontSize: 55 },
+      //     },
+      //   },
+      // ],
     },
   },
 });

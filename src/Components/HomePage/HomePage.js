@@ -1,7 +1,9 @@
 import React from "react";
 import { Paper, Box } from "@mui/material";
 import { useGlobalSx } from "../../Styles/useGlobalSx";
-import HeroSection from "./HeroSection/HeroSection";
+import { HeroSection } from "../ReusableComponents";
+import { heroSectionData } from "./HeroSection/data";
+// import HeroSection from "./HeroSection/HeroSection";
 import About from "./Sections/About/About";
 import Features from "./Sections/Features/Features";
 import ServicesShowcase from "./Showcases/Services/ServicesShowcase";
@@ -19,7 +21,7 @@ function HomePage() {
     <Box backgroundColor='background.primary' sx={sx.page_container}>
       {/* <HeroFullGrid /> */}
       {/* <HeroHalfGrid /> */}
-      <HeroSection />
+      <HeroSection data={heroSectionData} />
       <Box sx={sx.content_Wrapper}>
         {/* <Paper variant='section'>
           <ImageStack />

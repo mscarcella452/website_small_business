@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 
-export const useWindowHeight = () => {
+const useWindowHeight = () => {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useEffect(() => {
@@ -20,3 +20,5 @@ export const useWindowHeight = () => {
 
   return windowHeight;
 };
+
+export default useWindowHeight;

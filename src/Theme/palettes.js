@@ -30,13 +30,15 @@ const palette = {
     // main: "#F7F6F2",
     // main: "#A9BCB8",
     // main: "#729762",
-    main: "#E7F0DC",
+    // main: "#E7F0DC",
+    main: "#B7864C",
     // main: "#D5651A",
     // fontColor:
   },
   secondary: {
     // light: will be calculated from palette.primary.main,
-    main: "#F7F6F2",
+    main: "#424242",
+    // main: "#F7F6F2",
     // main: "#EDBBB1",
     // fontColor:
   },
@@ -46,4 +48,4 @@ const palette = {
   // },
 };
 
-export { palette };
+export default palette;

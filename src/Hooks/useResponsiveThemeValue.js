@@ -4,11 +4,16 @@ import { xs, mobile, sm, md, lg } from "../Theme/mediaQueries.js";
 const useResponsiveThemeValue = objectKey => {
   const theme = useTheme();
 
-  const isXsScreen = useMediaQuery(xs);
-  const isMobileScreen = useMediaQuery(mobile);
-  const isSmScreen = useMediaQuery(sm);
-  const isMdScreen = useMediaQuery(md);
-  const isLgScreen = useMediaQuery(lg);
+  // const isXsScreen = useMediaQuery(xs);
+  // const isMobileScreen = useMediaQuery(mobile);
+  // const isSmScreen = useMediaQuery(sm);
+  // const isMdScreen = useMediaQuery(md);
+  // const isLgScreen = useMediaQuery(lg);
+  const isXsScreen = useMediaQuery(theme.breakpoints.up("xs"));
+  const isMobileScreen = useMediaQuery(theme.breakpoints.up("mobile"));
+  const isSmScreen = useMediaQuery(theme.breakpoints.up("sm"));
+  const isMdScreen = useMediaQuery(theme.breakpoints.up("md"));
+  const isLgScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const keys = objectKey.split(".");
   const value = keys.reduce(
