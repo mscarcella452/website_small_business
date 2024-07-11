@@ -67,3 +67,20 @@ code {
   object-fit: cover;
   object-position: top center;
 }
+
+.content_img {
+  aspect-ratio: 1.5;
+  width: 50%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  align-self: flex-end;
+  padding: 0 1rem;
+}
+
+.background_image {
+  background-position: top center;
+  background-size: cover;
+  background-blend-mode: overlay;
+  background-repeat: no-repeat;
+}

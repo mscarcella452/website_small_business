@@ -1,74 +1,56 @@
 // import React from "react";
-import { Box, Container, Typography, Paper } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { hoursData } from "./data";
 import CompanyAddress from "../../../../HelperComponents/CompanyAddress";
 import ArrowLink from "../../../../HelperComponents/ArrowLink";
 import { useSectionSx } from "../../../../Styles/useSectionSx";
 import companyData from "../../../../data/CompanyData";
+import { CompanyHours } from "../../../ReusableComponents";
 
 function Hours() {
-  const { variant, sx } = useSectionSx();
-
-  const { subtitle, description, content } = hoursData;
+  const theme = useTheme();
+  const showImage = useMediaQuery(theme.breakpoints.up("md"));
+  const { heading, content, image } = hoursData;
+  const { heading: hv, subHeading: shv } = theme.typography.variants;
 
   return (
     <>
-      <Paper variant='section' id='Hours'>
-        <Container maxWidth={false} sx={sx.section_container}>
-          <Typography variant={variant.subtitle} sx={sx.subtitle}>
-            {subtitle}
+      <Stack variant='heading'>
+        {heading.text.map(({ variant, typography, text }) => (
+          <Typography variant={hv[variant]} typography={typography}>
+            {text}
           </Typography>
-          <CompanyAddress variant={variant.title} sx={sx.title} />
-          <Typography variant={variant.heading_p} sx={sx.heading_p}>
-            {description}
+        ))}
+      </Stack>
+      <Stack direction='row'>
+        <Stack variant='content'>
+          <Typography variant={shv.title} typography='subHeading.title'>
+            {content.title}
           </Typography>
+          <Typography variant={shv.p} typography='subHeading.p'>
+            {content.description}
+          </Typography>
+          <ArrowLink variant={shv.link} typography='subHeading.link'>
+            {content.link}
+          </ArrowLink>
+        </Stack>
 
+        {showImage && (
           <Box
-            className='flexColumn'
-            sx={{ width: 1, gap: "inherit", my: "3rem" }}
-          >
-            {companyData.hours.map(({ day, hours }, index) => (
-              <Box
-                key={index}
-                sx={{ ...sx.contentContainer, maxWidth: "lg", gap: 1 }}
-              >
-                <Typography
-                  variant={variant.content_title}
-                  sx={sx.content_title}
-                >
-                  {day}
-                </Typography>
-                {hours === "*appt. only" ? (
-                  <ArrowLink>{hours}</ArrowLink>
-                ) : (
-                  <Typography variant={variant.content_p} sx={sx.content_p}>
-                    {hours}
-                  </Typography>
-                )}
-              </Box>
-            ))}
-          </Box>
-
-          <Box sx={sx.contentGrid}>
-            <Box sx={sx.contentContainer}>
-              <Typography variant={variant.content_title} sx={sx.content_title}>
-                {content.title}
-              </Typography>
-              <Typography variant={variant.content_p} sx={sx.content_p}>
-                {content.paragraph}
-              </Typography>
-              <ArrowLink>{content.btnTitle}</ArrowLink>
-            </Box>
-
-            <Box
-              sx={sx.contentImage}
-              component={"img"}
-              src={content.imgSrc}
-              alt={"Hours section bacground image."}
-            />
-          </Box>
-        </Container>
-      </Paper>
+            className='content_img'
+            component={"img"}
+            src={image.src}
+            alt={image.alt}
+          />
+        )}
+      </Stack>
     </>
   );
 }

@@ -6,7 +6,6 @@ import {
   Stack,
   useMediaQuery,
   Container,
-  Button,
 } from "@mui/material";
 import { ArrowLink } from "../../../../HelperComponents";
 import Grid from "@mui/material/Unstable_Grid2"; // Grid version 2
@@ -21,24 +20,26 @@ function Features() {
 
   return (
     <>
-      <Stack variant='heading'>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xxs: "1fr", md: "1fr 1fr" },
+          gap: { xxs: theme.spacing(8), md: theme.spacing(4) },
+          alignItems: "center",
+        }}
+      >
         <Typography
-          variant={"h2"}
+          variant={"h1"}
           typography={"displayFont"}
           sx={{
             // fontWeight: "300",
             textAlign: "left",
-            color: "#fff",
           }}
         >
           what is bespoke?
           {/* what is bespoke tailoring? */}
         </Typography>
-        <Typography
-          variant={"p"}
-          typography={"heading.p"}
-          sx={{ color: "#fff" }}
-        >
+        <Typography variant={"p"} typography={"subHeading.p"}>
           The art of creating custom-fitted clothing from scratch, using precise
           measurements and client specifications. The process involves multiple
           fittings to ensure a perfect fit and unique style. This results in
@@ -46,57 +47,60 @@ function Features() {
           to detail, producing one-of-a-kind garments tailored to the client's
           personal taste and physique.
         </Typography>
-      </Stack>
-
-      <Grid
-        container
-        columns={{ xxs: 1, md: 2 }}
-        spacing={{
-          xxs: theme.spacing(6),
-          // sm: theme.spacing(6),
-          md: theme.spacing(8),
-          lg: theme.spacing(12),
-        }}
-        // sx={{ maxWidth: "lg", alignSelf: "center" }}
-      >
-        {content.map(({ title, description }, index) => (
-          <Grid xxs={1}>
-            <Stack
-              key={index}
+        {/* {heading.text.map(({ variant, typography, text }) => (
+          <Typography
+            variant={hv[variant]}
+            sx={{ width: 0.5 }}
+            typography={typography}
+          >
+            {text}
+          </Typography>
+        ))} */}
+        {/* <ArrowLink variant={hv.link} typography='heading.link'>
+          {heading.link}
+        </ArrowLink> */}
+      </Box>
+      {/* <Grid container spacing={theme.spacing(5)}>
+        {galleryImages.map(image => (
+          <Grid xxs={4}>
+            <Box
               sx={{
-                gap: 2,
-                margin: "auto",
-                height: 1,
-                minHeight: 200,
+                // height: 1,
+                aspectRatio: 1 / 1.25,
+                width: 1,
+                objectFit: "cover",
+                objectPosition: "center center",
               }}
-            >
-              <Typography
-                variant={"h4"}
-                typography='heading.title'
-                // sx={{ color: "#999999" }}
-                sx={{ color: "primary.light" }}
-              >
+              component={"img"}
+              src={image}
+            />
+          </Grid>
+        ))}
+      </Grid> */}
+
+      <Stack direction='row'>
+        <Stack variant='content'>
+          {content.map(({ title, description }, index) => (
+            <Stack key={index} sx={{ gap: 1 }}>
+              <Typography variant={shv.title} typography='subHeading.title'>
                 {title}
               </Typography>
-              <Typography
-                variant={shv.p}
-                typography='subHeading.p'
-                sx={{ color: "primary.light" }}
-              >
+              <Typography variant={shv.p} typography='subHeading.p'>
                 {description}
               </Typography>
             </Stack>
-          </Grid>
-        ))}
-      </Grid>
-      <ArrowLink
-        variant={"h6"}
-        typography='heading.link'
-        alignSelf='start'
-        sx={{ width: 1, maxWidth: "xs", color: "#fff" }}
-      >
-        View Our Services
-      </ArrowLink>
+          ))}
+        </Stack>
+
+        {showImage && (
+          <Box
+            className='content_img'
+            // component={"img"}
+            // src={image.src}
+            // alt={image.alt}
+          />
+        )}
+      </Stack>
     </>
   );
 }

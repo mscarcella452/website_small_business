@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 import companyData from "../../data/CompanyData";
 
 function ContactInfo({ labelProps, contactProps, ...rest }) {
@@ -7,9 +7,8 @@ function ContactInfo({ labelProps, contactProps, ...rest }) {
     <>
       {[companyData.phone, companyData.email, companyData.address].map(
         (data, index) => (
-          <Box
+          <Stack
             key={index}
-            className='flexRow'
             sx={{
               width: 1,
               justifyContent: "flex-end",
@@ -29,7 +28,7 @@ function ContactInfo({ labelProps, contactProps, ...rest }) {
             >
               {data}
             </Typography>
-          </Box>
+          </Stack>
         )
       )}
     </>

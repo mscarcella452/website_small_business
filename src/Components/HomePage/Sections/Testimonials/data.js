@@ -16,11 +16,12 @@ export const testimonialData = {
       review:
         "Absolutely thrilled with the suit I received from Thomas Mitchell Clothiers. The fit is impeccable, and the attention to detail is outstanding. Will definitely be coming back for more!",
     },
-    {
-      name: "Emily Davis",
-      review:
-        "I've been searching for the perfect wedding dress for months, and I'm so glad I found Thomas Mitchell Clothiers. They made my dream dress a reality, and I couldn't be happier!",
-    },
+
+    // {
+    //   name: "David Thompson",
+    //   review:
+    //     "Thomas Mitchell Clothiers provided an unparalleled tailoring experience. The craftsmanship is top-notch, and the staff is incredibly knowledgeable and attentive. I felt valued and heard throughout the entire process. Highly recommend!",
+    // },
     {
       name: "Stefon Brown",
       review:
@@ -31,5 +32,10 @@ export const testimonialData = {
       review:
         "The team at Thomas Mitchell Clothiers truly understands the art of tailoring. I've never felt more confident in my clothes. Thank you for your expertise and excellent service!",
     },
+    // {
+    //   name: "Emily Davis",
+    //   review:
+    //     "I've been searching for the perfect wedding dress for months, and I'm so glad I found Thomas Mitchell Clothiers. They made my dream dress a reality, and I couldn't be happier!",
+    // },
   ],
 };

@@ -1,11 +1,11 @@
 import { Box, Container, Typography, Paper } from "@mui/material";
 import { useShowcaseSx } from "../../../../Styles/useShowcaseSx.js";
 import ArrowLink from "../../../../HelperComponents/ArrowLink.js";
-import { galleryData } from "./data.js";
+import { galleryDataCopy } from "./data.js";
 
 function GalleryShowcase() {
   const { subtitle, title, description, btnTitle, backgroundImage } =
-    galleryData;
+    galleryDataCopy;
 
   const { variant, sx } = useShowcaseSx();
 

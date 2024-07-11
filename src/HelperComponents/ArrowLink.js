@@ -8,7 +8,7 @@ function ArrowLink({ flip, sx, children, ...rest }) {
     <Link
       className={"flexRow"}
       disableRipple
-      color='fontColor.p'
+      // color='fontColor.p'
       sx={{
         gap: 2,
         justifyContent: "space-between",
@@ -18,7 +18,7 @@ function ArrowLink({ flip, sx, children, ...rest }) {
 
         // alignSelf: "flex-end",
         width: "fit-content",
-        transition: "all 1s ease",
+        transition: "transform 1s ease",
         position: "relative",
         zIndex: 1,
         borderBottom: "1px solid",

@@ -79,18 +79,60 @@ function ContactUs() {
         </Typography>
       </Stack>
 
-      {/* <Stack variant='heading'>
-        {info.map(({ title, component }) => (
+      {info.map(({ title, component }, index) => (
+        <Stack
+          variant='heading'
+          key={index}
+          sx={
+            {
+              // gap: 5,
+              // textAlign: "center",
+              // maxWidth: "mobile",
+              // margin: "auto",
+              // backgroundColor: "background.primary",
+              // padding: 4,
+              // borderRadius: 2,
+              // height: 1,
+              // border: 1,
+              // maxWidth: "mobile",
+              // alignItems: "center",
+            }
+          }
+        >
+          <Box
+            // className='content_img'
+            component={"img"}
+            src={contactImages[index]}
+            // alt={image.alt}
+            sx={{
+              // border: 1,
+              // height: 400,
+              width: 0.5,
+              aspectRatio: 1.5,
+              objectFit: "cover",
+              objectPosition: "top center",
+              order: { xxs: -1, md: index === 0 ? 1 : -1 },
+              display: { xxs: "none", md: "block" },
+            }}
+          />
+
           <Stack sx={{ alignSelf: "center" }}>
-            <Stack variant='content' alignSelf={{ xxs: "start", md: "center" }}>
+            <Stack
+              variant='content'
+              sx={{
+                alignSelf: { xxs: "start", md: "center" },
+
+                // maxWidth: "xs",
+              }}
+            >
               <Typography variant={"h4"} typography='heading.title' mb={2}>
                 {title}
               </Typography>
               {component}
             </Stack>
           </Stack>
-        ))}
-      </Stack> */}
+        </Stack>
+      ))}
       <ArrowLink
         variant={"h6"}
         typography='heading.link'

@@ -7,11 +7,18 @@ import ContactPage from "./Components/ContactPage/ContactPage";
 import { Route, Routes } from "react-router-dom";
 import ScrollToTop from "./HelperComponents/ScrollToTop";
 import Hours from "./Components/HomePage/Sections/Hours/Hours";
-import { Box } from "@mui/material";
+import { Box, Container, Stack } from "@mui/material";
 
 function App() {
   return (
-    <>
+    <Box
+      sx={{
+        width: "100%",
+        height: "100%",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
       <ScrollToTop />
 
       <Navbar />
@@ -31,9 +38,13 @@ function App() {
         />
         {/* <Route path='*' element={<NotFound />} /> ERROR PAGE!!!!! */}
       </Routes>
-
       <Footer />
-    </>
+      {/* <Container maxWidth={false} sx={{ backgroundColor: "#fff" }}>
+        <Stack variant='section'>
+          <Footer />
+        </Stack>
+      </Container> */}
+    </Box>
   );
 }
 

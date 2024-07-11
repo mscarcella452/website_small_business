@@ -11,9 +11,8 @@ import useNavMenuCarouselProps from "./useNavMenuCarouselProps";
 // Styles
 import "./NavMenu.css";
 // Reusable Components
-import NavLinks from "../../ReusableComponents/NavLinks";
-import ContactInfo from "../../ReusableComponents/ContactInfo";
-import CompanyHours from "../../ReusableComponents/CompanyHours";
+
+import { NavLinks, ContactInfo, CompanyHours } from "../../ReusableComponents";
 // Helper Components
 import { AnimatedHamburgerIconButton } from "../../../HelperComponents";
 // Data
@@ -30,7 +29,7 @@ function NavMenu() {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [open, setOpen] = useState(false);
 
-  const handleChangeIndex = newIndex => setCurrentIndex(newIndex);
+  const handleChangeIndex = (event, newIndex) => setCurrentIndex(newIndex);
 
   const toggleDrawer = () => setOpen(prev => !prev);
   const handleCloseDrawer = () => setOpen(false);

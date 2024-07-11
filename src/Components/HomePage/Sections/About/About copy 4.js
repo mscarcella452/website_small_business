@@ -21,7 +21,14 @@ function About() {
 
   return (
     <>
-      <Stack variant='heading'>
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xxs: "1fr", md: "1fr 1fr" },
+          gap: { xxs: theme.spacing(8), md: theme.spacing(4) },
+          alignItems: "flex-start",
+        }}
+      >
         <Typography
           variant={"h2"}
           typography={"displayFont"}
@@ -40,7 +47,7 @@ function About() {
           each piece fits you perfectly and makes a statement. Explore our
           collection and experience the art of tailoring tailored just for you.
         </Typography>
-      </Stack>
+      </Box>
       <Stack direction='row'>
         <Stack variant='content'>
           <Typography variant={shv.title} typography='subHeading.title'>

@@ -1,8 +1,10 @@
 const palette = {
   background: {
     primary: "#EFEFEF",
+
     // primary: "#F7F6F2",
     secondary: "#F7F6F2",
+
     // secondary: "#342F28",
     // secondary: "#EFEFEF",
     // secondary: "#800020",
@@ -30,8 +32,11 @@ const palette = {
     // main: "#F7F6F2",
     // main: "#A9BCB8",
     // main: "#729762",
-    // main: "#E7F0DC",
-    main: "#B7864C",
+
+    main: "#E7F0DC",
+
+    // main: "#E4C87F",
+    // main: "#B7864C",
     // main: "#D5651A",
     // fontColor:
   },

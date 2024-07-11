@@ -1,6 +1,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { HeroSection } from "../ReusableComponents";
+import AppointmentScheduler from "./AppointmentScheduler";
 
 const heroSectionData = {
   heading: "Contact Us",
@@ -26,7 +27,7 @@ function ContactPage() {
           gap: { xxs: "2rem 0", mobile: "3rem 0", md: "4rem 0" },
         }}
       >
-        content
+        {/* <AppointmentScheduler /> */}
       </Box>
     </Box>
   );

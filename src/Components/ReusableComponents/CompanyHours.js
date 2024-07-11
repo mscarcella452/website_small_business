@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 import companyData from "../../data/CompanyData";
 import ArrowLink from "../../HelperComponents/ArrowLink";
 
@@ -13,9 +13,8 @@ function CompanyHours({
   return (
     <>
       {companyData.hours.map((data, index) => (
-        <Box
+        <Stack
           key={index}
-          className='flexRow'
           sx={{
             width: 1,
             justifyContent: "flex-start",
@@ -45,7 +44,7 @@ function CompanyHours({
               {data.hours}
             </Typography>
           )}
-        </Box>
+        </Stack>
       ))}
     </>
   );

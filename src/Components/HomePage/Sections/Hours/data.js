@@ -1,3 +1,5 @@
+import { companyData } from "../../../../data";
+
 export const hoursBackgroundImage =
   "https://fashiongalleria.biz/wp-content/uploads/2017/05/2442325-1536x1024.jpg";
 
@@ -37,7 +39,7 @@ export const scheduale = {
   },
 };
 
-export const hoursData = {
+export const hoursDataCopy = {
   subtitle: "visit and get styled",
   description:
     "Experience our personalized service on your terms. Whether you're in need of a fitting or a consultation, our team is here to assist you.",
@@ -48,5 +50,39 @@ export const hoursData = {
     paragraph:
       "Check out our availability and schedule your visit to witness the pinnacle of craftsmanship firsthand.",
     btnTitle: "Contact Us",
+  },
+};
+
+export const hoursData = {
+  heading: {
+    text: [
+      {
+        variant: "subtitle",
+        typography: "heading.subtitle",
+        text: "visit and get styled",
+      },
+      {
+        variant: "title",
+        typography: "heading.title",
+        text: companyData.address,
+      },
+      {
+        variant: "p",
+        typography: "heading.p",
+        text: "Experience our personalized service on your terms. Whether you're in need of a fitting or a consultation, our team is here to assist you.",
+      },
+    ],
+  },
+
+  content: {
+    title: "reach out",
+    description:
+      "Experience our personalized service on your terms. Whether you're in need of a fitting or a consultation, our team is here to assist you. Check out our availability and schedule your visit today.",
+    link: "Contact Us",
+  },
+
+  image: {
+    src: "https://fashiongalleria.biz/wp-content/uploads/2017/05/2442325-1536x1024.jpg",
+    alt: "Hours section background image.",
   },
 };

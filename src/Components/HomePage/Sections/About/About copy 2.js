@@ -21,18 +21,23 @@ function About() {
 
   return (
     <>
-      <Stack variant='heading'>
+      <Stack direction='row' sx={{ alignItems: "center" }}>
         <Typography
-          variant={"h2"}
+          variant={"h1"}
           typography={"displayFont"}
           sx={{
+            width: 0.5,
             // fontWeight: "300",
             textAlign: "left",
           }}
         >
           who we are.
         </Typography>
-        <Typography variant={"p"} typography={"subHeading.p"}>
+        <Typography
+          variant={"p"}
+          typography={"subHeading.p"}
+          sx={{ width: 0.5 }}
+        >
           Welcome to Thomas Mitchell Clothiers, where craftsmanship meets
           elegance. We specialize in bespoke tailoring, crafting timeless
           garments that reflect your unique style and personality. With

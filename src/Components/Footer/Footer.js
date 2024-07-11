@@ -6,9 +6,13 @@ import {
   Container,
   Divider,
   Link,
+  Stack,
+  useTheme,
+  useMediaQuery,
 } from "@mui/material";
 import { fonts } from "../../Theme/ThemeContext";
 import { companyData } from "../../data";
+import { CompanyHours, ContactInfo } from "../ReusableComponents";
 
 import CompanyAddress from "../../HelperComponents/CompanyAddress";
 import ArrowLink from "../../HelperComponents/ArrowLink";
@@ -17,232 +21,139 @@ import { Link as RouterLink } from "react-router-dom";
 // import { PageDiv, CompanyInfo } from "../../Helpers/HelperComponents";
 
 const links = [
+  { title: "Home", link: "#AboutUs" },
   { title: "About Us", link: "#AboutUs" },
   { title: "Services", link: "#Services" },
-  { title: "Hours", link: "#Hours" },
   { title: "Lookbook", link: "#Lookbook" },
   { title: "Contact Us", link: "#Contact Us" },
 ];
 
 function Footer() {
+  const theme = useTheme();
+  const isAtLeastSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const info = [
+    <ContactInfo
+      labelProps={{ display: "none" }}
+      contactProps={{
+        typography: "heading.p",
+        fontWeight: "500",
+        variant: "p",
+        color: "#999999",
+        // sx: { fontSize: 14 },
+      }}
+    />,
+    <CompanyHours
+      direction='row'
+      day={isAtLeastSm ? "day" : "abrievDay"}
+      dayProps={{
+        typography: "heading.p",
+        fontWeight: "500",
+        variant: "p",
+        color: "#999999",
+        // sx: { fontSize: 14 },
+      }}
+      hoursProps={{
+        typography: "heading.p",
+        fontWeight: "500",
+        variant: "p",
+        color: "#999999",
+        // sx: { fontSize: 14 },
+      }}
+    />,
+  ];
   return (
-    <Paper
-      variant='footer'
-      id='footer'
-      sx={{ backgroundColor: "#333", color: "#fff" }}
+    <Stack
+      variant='section'
+      sx={{
+        gap: 10,
+        pb: 4,
+        // padding: {
+        //   xxs: "1rem",
+        //   sm: " 2rem",
+        // },
+        backgroundColor: "#202020",
+        // backgroundColor: "#fff",
+        color: "#fff",
+      }}
     >
-      <Container
-        maxWidth={false}
-        className='flexColumn'
-        sx={{
-          gap: 10,
-          display: "flex",
-        }}
-      >
-        <Box
-          className='flexRow'
-          sx={{
-            width: 1,
-            display: "grid",
-            gridTemplateColumns: { xxs: "1fr", md: "1fr auto" },
-            alignItems: "flex-start",
-            gap: "inherit",
-          }}
-        >
-          <Box className='flexColumn' sx={{ alignItems: "flex-start", gap: 5 }}>
-            <Title />
-            <Box
-              sx={{
-                alignItems: "flex-start",
-
-                display: "grid",
-                gridTemplateColumns: { xxs: "1fr", sm: "1fr 1fr" },
-                gap: "inherit",
-              }}
+      <Stack direction={{ xxs: "column", sm: "row" }} gap='inherit'>
+        <Stack sx={{ gap: 2, flex: 1 }}>
+          <Stack gap={"inherit"} mb={4}>
+            <Typography
+              variant={"h5"}
+              typography='secondaryFont'
+              textTransform={"uppercase"}
+              fontWeight={700}
             >
-              <Hours />
-              <Box className='flexColumn' gap='inherit'>
-                <Contact />
-                <Location />
-              </Box>
-            </Box>
-          </Box>
-          <Links />
-        </Box>
+              Thomas Mitchell Clothiers
+            </Typography>
+            {/* <Typography
+              variant={"h6"}
+              typography='primaryFont'
+              fontWeight={300}
+            >
+              bespoke tailoring for timeless elegance.
+            </Typography> */}
+          </Stack>
+          <Stack direction={{ xxs: "column", lg: "row" }} gap={6}>
+            {info.map(component => (
+              <Stack gap={1} width={1}>
+                {component}
+              </Stack>
+            ))}
+          </Stack>
+        </Stack>
 
-        <Attribution />
-      </Container>
-    </Paper>
+        <Stack gap={3}>
+          {links.map(link => (
+            <Typography
+              variant={"h6"}
+              typography='secondaryFont'
+              textAlign={{ xxs: "center", sm: "left" }}
+              fontWeight={700}
+            >
+              {link.title}
+            </Typography>
+          ))}
+        </Stack>
+      </Stack>
+      <Stack alignItems='center' gap={2}>
+        <Typography
+          variant='h7'
+          color='#999999'
+          sx={{ fontSize: 12, typography: "primaryFont", textAlign: "center" }}
+        >
+          Copyright 2024. All right reserved
+        </Typography>
+        <Typography
+          variant='h7'
+          color='#999999'
+          sx={{ fontSize: 10, typography: "primaryFont", textAlign: "center" }}
+        >
+          Images from stock website
+        </Typography>
+      </Stack>
+    </Stack>
   );
 }
 
 export default Footer;
 
-function Hours() {
+function Attribution({ ...rest }) {
   return (
-    <Box
-      className='flexColumn'
-      gap={2}
-      sx={{
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
-        width: 1,
-        height: 1,
-        color: "inherit",
-      }}
-    >
+    <Stack gap={2} {...rest}>
       <Typography
-        variant='h6'
-        sx={{ fontFamily: fonts.display, color: "primary.main" }}
+        variant='h7'
+        sx={{ fontSize: 12, fontFamily: fonts.primary, textAlign: "center" }}
       >
-        Hours:
-      </Typography>
-      {companyData.hours.map(data => (
-        <Box
-          className='flexColumn'
-          maxWidth='sm'
-          gap={1}
-          sx={{ alignItems: "flex-start" }}
-        >
-          <Typography variant='p' fontWeight={300}>
-            {data.abrievDay}
-          </Typography>
-          {/* <Typography variant='p'>{data.hours}</Typography> */}
-          {data.hours === "*appt. only" ? (
-            <ArrowLink color='inherit'>{data.hours}</ArrowLink>
-          ) : (
-            <Typography variant='p'>{data.hours}</Typography>
-          )}
-        </Box>
-      ))}
-    </Box>
-  );
-}
-
-function Links() {
-  return (
-    <Box
-      className='flexColumn'
-      gap={{ xxs: 5, mobile: 3 }}
-      sx={{
-        height: 1,
-        flex: 1,
-        flexDirection: { xxs: "column", sm: "row", md: "column" },
-        flexWrap: "wrap",
-
-        // border: 1,
-        alignItems: { xxs: "center", sm: "flex-end" },
-        justifyContent: { xxs: "center", md: "flex-start" },
-        // justifyContent: "center",
-        // color: "inherit",
-      }}
-    >
-      {links.map(link => (
-        <Link
-          component={RouterLink}
-          variant='p'
-          sx={{
-            padding: 1,
-            fontFamily: fonts.secondary,
-            fontWeight: 600,
-            color: "secondary.main",
-          }}
-        >
-          {link.title}
-        </Link>
-      ))}
-    </Box>
-  );
-}
-
-function Contact() {
-  return (
-    <Box
-      className='flexColumn'
-      gap={2}
-      sx={{ alignItems: "flex-start", width: 1, color: "inherit" }}
-    >
-      <Typography
-        variant='h6'
-        sx={{ fontFamily: fonts.display, color: "primary.main" }}
-      >
-        Contact:
-      </Typography>
-      <Link component={RouterLink} variant='p' color='secondary.main'>
-        {companyData.email}
-      </Link>
-      <Link component={RouterLink} variant='p' color='secondary.main'>
-        {companyData.phone}
-      </Link>
-    </Box>
-  );
-}
-
-function Location() {
-  return (
-    <Box
-      className='flexColumn'
-      gap={2}
-      sx={{ alignItems: "flex-start", width: 1, color: "inherit" }}
-    >
-      <Typography
-        variant='h6'
-        // fontWeight={400}
-        sx={{ fontFamily: fonts.display, color: "primary.main" }}
-      >
-        Location:
-      </Typography>
-      <Typography variant='p'>{companyData.address}</Typography>
-    </Box>
-  );
-}
-
-function Title() {
-  return (
-    <Box className='flexColumn' gap={1}>
-      <Typography
-        variant='h4'
-        textAlign='left'
-        sx={{
-          fontFamily: fonts.secondary,
-          fontWeight: 700,
-          width: 1,
-          // color: "inherit",
-          color: "primary.main",
-        }}
-      >
-        Thomas Mitchell Clothiers
-      </Typography>
-      <Typography
-        variant='h6'
-        textAlign='left'
-        sx={{
-          fontFamily: fonts.display,
-          // fontWeight: 600,
-          width: 1,
-          marginBottom: 6,
-          color: "primary.main",
-        }}
-      >
-        expert tailoring for personalized elegance
-      </Typography>
-    </Box>
-  );
-}
-
-function Attribution() {
-  return (
-    <Box
-      className='flexColumn'
-      gap={2}
-      sx={{ width: 1, border: 0, color: "inherit" }}
-    >
-      <Typography variant='h7' sx={{ fontSize: 12, fontFamily: fonts.primary }}>
         Copyright 2024. All right reserved
       </Typography>
-      <Typography variant='h7' sx={{ fontSize: 10, fontFamily: fonts.primary }}>
+      <Typography
+        variant='h7'
+        sx={{ fontSize: 10, fontFamily: fonts.primary, textAlign: "center" }}
+      >
         Images from stock website
       </Typography>
-    </Box>
+    </Stack>
   );
 }

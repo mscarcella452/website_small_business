@@ -15,21 +15,40 @@ function Navbar() {
       <Container
         maxWidth={false}
         variant='navbar'
-        sx={{ justifyContent: { xxs: "flex-start", mobile: "center" } }}
+        // sx={{ justifyContent: "flex-start" }}
+        sx={{
+          justifyContent: "flex-start",
+          // justifyContent: { xxs: "flex-start", mobile: "center" },
+
+          backgroundColor: "#FFF",
+        }}
       >
         <Link
           component={RouterLink}
           to='/'
-          variant={screenSizeThreshold ? "h3" : "h4"}
-          typography='displayFont'
+          variant={"h5"}
+          typography='secondaryFont'
           sx={{
-            fontWeight: 500,
-            color: "secondary.main",
+            fontWeight: 600,
+            color: "#333",
             textTransform: "lowercase",
           }}
         >
-          {companyData.name}
+          Thomas Mitchell Clothiers
         </Link>
+        {/* <Link
+          component={RouterLink}
+          to='/'
+          variant={screenSizeThreshold ? "h3" : "h4"}
+          typography='heading.title'
+          // sx={{
+          //   fontWeight: 500,
+          //   color: "secondary.main",
+          //   textTransform: "lowercase",
+          // }}
+        >
+          {companyData.name}
+        </Link> */}
       </Container>
       <NavMenu />
     </>

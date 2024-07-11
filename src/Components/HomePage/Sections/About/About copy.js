@@ -22,23 +22,8 @@ function About() {
   return (
     <>
       <Stack variant='heading'>
-        <Typography
-          variant={"h2"}
-          typography={"displayFont"}
-          sx={{
-            // fontWeight: "300",
-            textAlign: "left",
-          }}
-        >
-          who we are.
-        </Typography>
-        <Typography variant={"p"} typography={"subHeading.p"}>
-          Welcome to Thomas Mitchell Clothiers, where craftsmanship meets
-          elegance. We specialize in bespoke tailoring, crafting timeless
-          garments that reflect your unique style and personality. With
-          meticulous attention to detail and a passion for quality, we ensure
-          each piece fits you perfectly and makes a statement. Explore our
-          collection and experience the art of tailoring tailored just for you.
+        <Typography variant={hv["p"]} typography={"heading.p"}>
+          {heading}
         </Typography>
       </Stack>
       <Stack direction='row'>
@@ -60,7 +45,7 @@ function About() {
             component={"img"}
             src={image.src}
             alt={image.alt}
-            // sx={{ order: -1 }}
+            sx={{ order: -1 }}
           />
         )}
       </Stack>
