@@ -1,7 +1,7 @@
 // import React from 'react'
 import { Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import CompanyData from "../data/CompanyData";
+import CompanyData from "../data/companyData";
 
 function CompanyAddress({
   address = CompanyData.address,

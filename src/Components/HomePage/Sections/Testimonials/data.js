@@ -1,41 +1,29 @@
+import { companyData } from "../../../../data";
+
 export const testimonialData = {
-  subtitle: "testimonials",
-  title: "what our customers say",
-  description:
-    "We value our clients and strive to provide the best service possible. Here are some of their thoughts about working with us.",
-  backgroundImage:
-    "https://cdn.pixabay.com/photo/2017/01/14/10/03/fashion-1979136_1280.jpg",
+  quoteIcon: <i class='fa-solid fa-quote-right'></i>,
+  title: "what our customers say.",
+  p: `At ${companyData.name}, we deeply value our clients and are committed to delivering exceptional service at every opportunity. Here are a few testimonials from our clients, sharing their experiences of working with us:`,
   reviews: [
     {
       name: "Alice Johnson",
-      review:
-        "Had a wonderful experience at Thomas Mitchell Clothiers. From the initial consultation to the final fitting, everything was handled professionally and with care. Highly recommend!",
+      location: "Babylon, NY",
+      review: `Had a wonderful experience at ${companyData.name}. From the initial consultation to the final fitting, everything was handled professionally and with care. Highly recommend!`,
     },
     {
       name: "Michael Smith",
-      review:
-        "Absolutely thrilled with the suit I received from Thomas Mitchell Clothiers. The fit is impeccable, and the attention to detail is outstanding. Will definitely be coming back for more!",
+      location: "Huntington, NY",
+      review: `Absolutely thrilled with the suit I received from ${companyData.name}. The fit is impeccable, and the attention to detail is outstanding. Will definitely be coming back for more!`,
     },
-
-    // {
-    //   name: "David Thompson",
-    //   review:
-    //     "Thomas Mitchell Clothiers provided an unparalleled tailoring experience. The craftsmanship is top-notch, and the staff is incredibly knowledgeable and attentive. I felt valued and heard throughout the entire process. Highly recommend!",
-    // },
     {
       name: "Stefon Brown",
-      review:
-        "Exceptional service and quality! Thomas Mitchell Clothiers exceeded my expectations in every way. The team went above and beyond to ensure I was satisfied with my purchase. Highly recommend to anyone in need of custom tailoring.",
+      location: "Brookhaven, NY",
+      review: `Exceptional service and quality! ${companyData.name} exceeded my expectations in every way. The team went above and beyond to ensure I was satisfied with my purchase. Highly recommend to anyone in need of custom tailoring.`,
     },
     {
       name: "Sarah Wilson",
-      review:
-        "The team at Thomas Mitchell Clothiers truly understands the art of tailoring. I've never felt more confident in my clothes. Thank you for your expertise and excellent service!",
+      location: "East Islip, NY",
+      review: `The team at ${companyData.name} truly understands the art of tailoring. I've never felt more confident in my clothes. Thank you for your expertise and excellent service!`,
     },
-    // {
-    //   name: "Emily Davis",
-    //   review:
-    //     "I've been searching for the perfect wedding dress for months, and I'm so glad I found Thomas Mitchell Clothiers. They made my dream dress a reality, and I couldn't be happier!",
-    // },
   ],
 };

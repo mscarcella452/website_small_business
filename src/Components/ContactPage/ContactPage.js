@@ -1,6 +1,5 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { HeroSection } from "../ReusableComponents";
 import AppointmentScheduler from "./AppointmentScheduler";
 
 const heroSectionData = {
@@ -16,7 +15,7 @@ function ContactPage() {
       backgroundColor='background.primary'
       sx={{ width: 1, height: 1, position: "relative", overflow: "hidden" }}
     >
-      <HeroSection data={heroSectionData} />
+      {/* <HeroSection data={heroSectionData} /> */}
       <Box
         sx={{
           width: 1,

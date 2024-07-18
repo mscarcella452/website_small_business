@@ -1,4 +1,4 @@
-export { default as CompanyHours } from "./CompanyHours";
-export { default as ContactInfo } from "./ContactInfo";
+export { default as CompanyInfo } from "./CompanyInfo";
 export { default as NavLinks } from "./NavLinks";
-export { default as HeroSection } from "./HeroSection";
+export { default as Banner } from "./Banner";
+export { default as Accordion } from "./Accordion";

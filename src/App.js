@@ -1,13 +1,21 @@
-import { Navbar } from "./Components/Navbar";
+import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer/Footer";
-import HomePage from "./Components/HomePage/HomePage";
+import HomePage from "./Components/HomePage";
 import ServicesPage from "./Components/ServicesPage/ServicesPage";
-import LookbookPage from "./Components/LookbookPage/LookbookPage";
+import LookbookPage from "./Components/LookbookPage";
 import ContactPage from "./Components/ContactPage/ContactPage";
 import { Route, Routes } from "react-router-dom";
 import ScrollToTop from "./HelperComponents/ScrollToTop";
-import Hours from "./Components/HomePage/Sections/Hours/Hours";
-import { Box, Container, Stack } from "@mui/material";
+import { Box } from "@mui/material";
+import AboutPage from "./Components/AboutPage";
+import { routes } from "./data";
+
+// const routePaths = {
+//   home: "/",
+//   services: "/our-services",
+//   lookbook: "/lookbook",
+//   contact: "/contact",
+// }
 
 function App() {
   return (
@@ -17,6 +25,7 @@ function App() {
         height: "100%",
         position: "relative",
         overflow: "hidden",
+        backgroundColor: "background",
       }}
     >
       <ScrollToTop />
@@ -24,18 +33,12 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/our-services' element={<ServicesPage />} />
-        <Route path='/lookbook' element={<LookbookPage />} />
-        <Route path='/contact' element={<ContactPage />} />
-        <Route
-          path='/hours'
-          element={
-            <Box sx={{ marginTop: "70px", width: 1, height: 1 }}>
-              <Hours />
-            </Box>
-          }
-        />
+        <Route path={routes.home.path} element={<HomePage />} />
+        <Route path={routes.about.path} element={<AboutPage />} />
+        <Route path={routes.services.path} element={<ServicesPage />} />
+        <Route path={routes.lookbook.path} element={<LookbookPage />} />
+        <Route path={routes.contact.path} element={<ContactPage />} />
+
         {/* <Route path='*' element={<NotFound />} /> ERROR PAGE!!!!! */}
       </Routes>
       <Footer />

@@ -29,9 +29,9 @@ function AnimatedHamburgerIconButton({
     <IconButton
       className={styles.iconButton}
       sx={{
-        "&:hover": {
-          backgroundColor: props.iconButton.backgroundColor[transitionState],
-        },
+        // "&:hover": {
+        //   backgroundColor: props.iconButton.backgroundColor[transitionState],
+        // },
         color: props.iconButton.color[transitionState],
         ...sx,
       }}
@@ -40,6 +40,7 @@ function AnimatedHamburgerIconButton({
       <Box className={styles.icon_container}>
         {["0", "1"].map(index => (
           <Box
+            key={index}
             className={styles.lines}
             sx={{
               transform: transitionState

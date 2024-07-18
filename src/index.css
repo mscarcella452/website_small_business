@@ -70,12 +70,9 @@ code {
 
 .content_img {
   aspect-ratio: 1.5;
-  width: 50%;
-  max-height: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: top center;
-  align-self: flex-end;
-  padding: 0 1rem;
 }
 
 .background_image {

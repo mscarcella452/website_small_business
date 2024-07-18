@@ -1,24 +1,28 @@
-// import React from "react";
-
-import { Link, useTheme } from "@mui/material";
+import { Link } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { routes } from "../../data";
 
-function NavLinks({ links, activeColor, ...rest }) {
-  const theme = useTheme();
+const routeArray = Object.values(routes).map(({ path, link }) => ({
+  path,
+  link,
+}));
 
-  const active_color = activeColor ? activeColor : theme.palette.primary.main;
+function NavLinks({ activeColor = "inherit", ...rest }) {
   return (
     <>
-      {links.map((link, index) => (
+      {routeArray.map((link, index) => (
         <Link
-          variant='h3'
+          variant='p'
+          typography='navLinks'
+          underline='none'
           key={index}
-          to={link.to}
+          to={link.path}
           component={NavLink}
-          typography='navMenu.navLink'
           style={({ isActive }) => ({
-            color: isActive && active_color,
+            color: isActive && activeColor,
+            cursor: isActive ? "default" : "pointer",
           })}
+          sx={{ "&:hover": { color: activeColor } }}
           {...rest}
         >
           {link.link}

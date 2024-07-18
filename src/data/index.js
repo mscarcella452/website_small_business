@@ -1,1 +1,2 @@
-export { default as companyData } from "./CompanyData";
+export { default as companyData } from "./companyData";
+export { default as routes } from "./routes";

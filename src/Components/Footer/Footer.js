@@ -1,136 +1,62 @@
-import React from "react";
-import {
-  Paper,
-  Box,
-  Typography,
-  Container,
-  Divider,
-  Link,
-  Stack,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
-import { fonts } from "../../Theme/ThemeContext";
+import { Typography, Stack, useTheme, useMediaQuery } from "@mui/material";
 import { companyData } from "../../data";
-import { CompanyHours, ContactInfo } from "../ReusableComponents";
-
-import CompanyAddress from "../../HelperComponents/CompanyAddress";
-import ArrowLink from "../../HelperComponents/ArrowLink";
-import { Link as RouterLink } from "react-router-dom";
-
-// import { PageDiv, CompanyInfo } from "../../Helpers/HelperComponents";
-
-const links = [
-  { title: "Home", link: "#AboutUs" },
-  { title: "About Us", link: "#AboutUs" },
-  { title: "Services", link: "#Services" },
-  { title: "Lookbook", link: "#Lookbook" },
-  { title: "Contact Us", link: "#Contact Us" },
-];
+import { CompanyInfo, NavLinks } from "../ReusableComponents";
+import { footerData } from "./data";
 
 function Footer() {
   const theme = useTheme();
   const isAtLeastSm = useMediaQuery(theme.breakpoints.up("sm"));
-  const info = [
-    <ContactInfo
-      labelProps={{ display: "none" }}
-      contactProps={{
-        typography: "heading.p",
-        fontWeight: "500",
-        variant: "p",
-        color: "#999999",
-        // sx: { fontSize: 14 },
-      }}
-    />,
-    <CompanyHours
-      direction='row'
-      day={isAtLeastSm ? "day" : "abrievDay"}
-      dayProps={{
-        typography: "heading.p",
-        fontWeight: "500",
-        variant: "p",
-        color: "#999999",
-        // sx: { fontSize: 14 },
-      }}
-      hoursProps={{
-        typography: "heading.p",
-        fontWeight: "500",
-        variant: "p",
-        color: "#999999",
-        // sx: { fontSize: 14 },
-      }}
-    />,
-  ];
+
+  const { attribution } = footerData;
+
   return (
     <Stack
       variant='section'
       sx={{
-        gap: 10,
-        pb: 4,
-        // padding: {
-        //   xxs: "1rem",
-        //   sm: " 2rem",
-        // },
-        backgroundColor: "#202020",
-        // backgroundColor: "#fff",
-        color: "#fff",
+        gap: theme.spacing(8),
+        backgroundColor: "primary.main",
+        color: "#ACB4AF",
+        // color: "#D3D7D5",
       }}
     >
       <Stack direction={{ xxs: "column", sm: "row" }} gap='inherit'>
-        <Stack sx={{ gap: 2, flex: 1 }}>
-          <Stack gap={"inherit"} mb={4}>
-            <Typography
-              variant={"h5"}
-              typography='secondaryFont'
-              textTransform={"uppercase"}
-              fontWeight={700}
-            >
-              Thomas Mitchell Clothiers
-            </Typography>
-            {/* <Typography
-              variant={"h6"}
-              typography='primaryFont'
-              fontWeight={300}
-            >
-              bespoke tailoring for timeless elegance.
-            </Typography> */}
-          </Stack>
+        <Stack sx={{ gap: theme.spacing(8), flex: 1 }}>
+          <Typography
+            variant={"h5"}
+            typography='primaryFont'
+            textTransform='uppercase'
+          >
+            {companyData.name}
+          </Typography>
+
           <Stack direction={{ xxs: "column", lg: "row" }} gap={6}>
-            {info.map(component => (
-              <Stack gap={1} width={1}>
-                {component}
-              </Stack>
-            ))}
+            <Stack gap={1} width={1}>
+              <CompanyInfo direction='row' type='contact' labelKey='abriev' />
+            </Stack>
+            <Stack gap={1} width={1}>
+              <CompanyInfo
+                type='hours'
+                labelKey={isAtLeastSm ? "full" : "abriev"}
+                direction='row'
+              />
+            </Stack>
           </Stack>
         </Stack>
 
-        <Stack gap={3}>
-          {links.map(link => (
-            <Typography
-              variant={"h6"}
-              typography='secondaryFont'
-              textAlign={{ xxs: "center", sm: "left" }}
-              fontWeight={700}
-            >
-              {link.title}
-            </Typography>
-          ))}
+        <Stack gap={theme.spacing(3)}>
+          <NavLinks
+            color='background.primary'
+            textAlign={{ xxs: "center", md: "left" }}
+            fontWeight={600}
+          />
         </Stack>
       </Stack>
       <Stack alignItems='center' gap={2}>
-        <Typography
-          variant='h7'
-          color='#999999'
-          sx={{ fontSize: 12, typography: "primaryFont", textAlign: "center" }}
-        >
-          Copyright 2024. All right reserved
+        <Typography typography='footer.attribution' fontSize={12}>
+          {attribution.copyright}
         </Typography>
-        <Typography
-          variant='h7'
-          color='#999999'
-          sx={{ fontSize: 10, typography: "primaryFont", textAlign: "center" }}
-        >
-          Images from stock website
+        <Typography typography='footer.attribution' fontSize={10}>
+          {attribution.images}
         </Typography>
       </Stack>
     </Stack>
@@ -138,22 +64,3 @@ function Footer() {
 }
 
 export default Footer;
-
-function Attribution({ ...rest }) {
-  return (
-    <Stack gap={2} {...rest}>
-      <Typography
-        variant='h7'
-        sx={{ fontSize: 12, fontFamily: fonts.primary, textAlign: "center" }}
-      >
-        Copyright 2024. All right reserved
-      </Typography>
-      <Typography
-        variant='h7'
-        sx={{ fontSize: 10, fontFamily: fonts.primary, textAlign: "center" }}
-      >
-        Images from stock website
-      </Typography>
-    </Stack>
-  );
-}
